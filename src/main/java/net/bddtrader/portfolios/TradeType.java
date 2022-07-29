@@ -1,6 +1,7 @@
 package net.bddtrader.portfolios;
 
-import static net.bddtrader.portfolios.TradeDirection.*;
+import static net.bddtrader.portfolios.TradeDirection.Decrease;
+import static net.bddtrader.portfolios.TradeDirection.Increase;
 
 public enum TradeType {
     Deposit(Increase), // Deposit cash into the portfolio

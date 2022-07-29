@@ -1,7 +1,6 @@
 package net.bddtrader.portfolios;
 
 import net.bddtrader.tradingdata.PriceReader;
-import net.bddtrader.tradingdata.TradingDataAPI;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,5 @@
 package net.bddtrader.tradingdata;
 
-import net.bddtrader.stocks.Company;
 import net.bddtrader.stocks.TradeBook;
 import net.bddtrader.tops.Top;
 

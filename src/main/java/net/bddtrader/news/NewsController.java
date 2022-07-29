@@ -1,12 +1,13 @@
 package net.bddtrader.news;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import net.bddtrader.config.TraderConfiguration;
 import net.bddtrader.config.TradingDataSource;
 import net.bddtrader.tradingdata.TradingData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,6 @@ import java.util.stream.Collectors;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-@Api("news")
 public class NewsController {
 
     private final TradingDataSource tradingDataSource;
@@ -24,14 +24,14 @@ public class NewsController {
     public NewsController(TradingDataSource tradingDataSource) {
         this.tradingDataSource = tradingDataSource;
     }
+
     @Autowired
     public NewsController(TraderConfiguration traderConfiguration) {
         this(traderConfiguration.getTradingDataSource());
     }
 
-    @RequestMapping(value="/api/news", method = GET)
-    @ApiOperation(value = "Get news articles about a given stock",
-                  notes="Use 'market' to get market-wide news.")
+    @RequestMapping(value = "/api/news", method = GET)
+    @Operation(description = "Use 'market' to get market-wide news.")
     public List<NewsItem> newsFor(@RequestParam(required = false) String symbols) {
         List<String> requestedStockids;
 
