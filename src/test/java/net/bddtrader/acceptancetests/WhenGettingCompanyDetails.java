@@ -41,10 +41,10 @@ public class WhenGettingCompanyDetails {
 
     @Test
     public void should_return_news_for_a_requested_company() {
-        given().queryParam("symbols", "fb")
+        given().queryParam("symbols", "fb,aapl")
                 .when()
                 .get("/news")
                 .then()
-                .body("related", everyItem(containsString("FB")));
+                .body("related", everyItem(anyOf(containsString("FB"), containsString("AAPL"))));
     }
 }
