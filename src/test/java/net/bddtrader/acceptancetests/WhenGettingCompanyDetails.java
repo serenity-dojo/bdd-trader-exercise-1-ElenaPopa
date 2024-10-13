@@ -1,10 +1,13 @@
 package net.bddtrader.acceptancetests;
 
 import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
 public class WhenGettingCompanyDetails {
@@ -34,5 +37,14 @@ public class WhenGettingCompanyDetails {
                 .then()
                 .body("companyName", equalTo("Apple, Inc."))
                 .body("sector", equalTo("Electronic Technology"));
+    }
+
+    @Test
+    public void should_return_news_for_a_requested_company() {
+        given().queryParam("symbols", "fb")
+                .when()
+                .get("/news")
+                .then()
+                .body("related", everyItem(containsString("FB")));
     }
 }
